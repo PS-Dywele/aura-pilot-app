@@ -13,8 +13,18 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Default (unset) keeps Lovable's normal deploy target. Self-hosting (e.g. Docker on a
-  // Linux VM) sets NITRO_PRESET=node-server to emit a standalone Node server build.
+  // Linux VM) sets NITRO_PRESET=node-server to emit a standalone Node server build in
+  // .output (entry: .output/server/index.mjs).
   ...(process.env.NITRO_PRESET
-    ? { nitro: { preset: process.env.NITRO_PRESET } }
+    ? {
+        nitro: {
+          preset: process.env.NITRO_PRESET,
+          output: {
+            dir: ".output",
+            serverDir: ".output/server",
+            publicDir: ".output/public",
+          },
+        },
+      }
     : {}),
 });
