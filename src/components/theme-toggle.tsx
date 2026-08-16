@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 type Theme = "light" | "dark";
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem('lumen-theme')||'dark';document.documentElement.classList.toggle('dark',t!=='light');}catch(e){document.documentElement.classList.add('dark');}})();`;
+export const themeInitScript = `(function(){try{if(localStorage.getItem('lumen-theme')==='light'){document.documentElement.classList.remove('dark');}}catch(e){}})();`;
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
