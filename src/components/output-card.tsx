@@ -31,21 +31,23 @@ export function OutputCard({ title, content, loading, error, onRetry, emptyHint,
   };
 
   return (
-    <Card className="flex h-full flex-col">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <CardTitle className="text-base">{title}</CardTitle>
+    <Card className="surface-sheen flex h-full flex-col border-border/70 shadow-soft">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-border/60 pb-4">
+        <CardTitle className="text-sm font-medium uppercase tracking-[0.12em] text-muted-foreground">
+          {title}
+        </CardTitle>
         {content && !loading && (
-          <Button variant="outline" size="sm" onClick={copy} className="gap-1.5">
+          <Button variant="outline" size="sm" onClick={copy} className="gap-1.5 transition-colors">
             {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "Copied" : "Copy"}
           </Button>
         )}
       </CardHeader>
-      <CardContent className="flex-1">
+      <CardContent className="flex-1 pt-5">
         {loading && (
-          <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-2 text-muted-foreground">
-            <Loader2 className="h-5 w-5 animate-spin" />
-            <p className="text-sm">Generating…</p>
+          <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-3 text-muted-foreground">
+            <Loader2 className="h-5 w-5 animate-spin text-primary" />
+            <p className="text-sm tracking-tight">Generating…</p>
           </div>
         )}
         {!loading && error && (
@@ -60,12 +62,12 @@ export function OutputCard({ title, content, loading, error, onRetry, emptyHint,
           </div>
         )}
         {!loading && !error && !content && (
-          <div className="flex h-full min-h-[200px] items-center justify-center text-center text-sm text-muted-foreground">
+          <div className="flex h-full min-h-[200px] items-center justify-center px-6 text-center text-sm leading-relaxed text-balance text-muted-foreground/80">
             {emptyHint}
           </div>
         )}
         {!loading && !error && content && (
-          <>
+          <div className="animate-rise">
             {renderMarkdown ? (
               <SimpleMarkdown text={content} />
             ) : (
@@ -74,7 +76,7 @@ export function OutputCard({ title, content, loading, error, onRetry, emptyHint,
               </pre>
             )}
             <AiDisclaimer />
-          </>
+          </div>
         )}
       </CardContent>
     </Card>

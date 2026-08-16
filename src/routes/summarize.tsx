@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Loader2 } from "lucide-react";
 import { runAi } from "@/lib/ai.functions";
 import { OutputCard } from "@/components/output-card";
+import { PageHeader } from "@/components/page-header";
 
 export const Route = createFileRoute("/summarize")({
   head: () => ({
@@ -33,17 +34,20 @@ function SummarizePage() {
     mutation.mutate();
   };
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight">Meeting Notes Summarizer</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Paste raw notes — get key points, decisions, action items, and dates.
-        </p>
-      </div>
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader><CardTitle className="text-base">Raw notes</CardTitle></CardHeader>
-          <CardContent className="space-y-4">
+    <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <PageHeader
+        eyebrow="Summarize"
+        title="Meeting Notes Summarizer"
+        description="Paste raw notes — get key points, decisions, action items, and dates."
+      />
+      <div className="grid animate-rise gap-6 lg:grid-cols-2" style={{ animationDelay: "80ms" }}>
+        <Card className="surface-sheen h-full border-border/70 shadow-soft">
+          <CardHeader className="border-b border-border/60 pb-4">
+            <CardTitle className="text-sm font-medium uppercase tracking-[0.12em] text-muted-foreground">
+              Raw notes
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-5 pt-5">
             <div className="space-y-2">
               <Label htmlFor="notes">Paste your meeting notes</Label>
               <Textarea

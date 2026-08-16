@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, FileText, ListChecks, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeader } from "@/components/page-header";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,29 +38,33 @@ const features = [
 
 function Index() {
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Welcome back</h1>
-        <p className="mt-2 text-muted-foreground">
-          Three focused AI tools to help you write, summarize, and plan — faster.
-        </p>
-      </div>
+    <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <PageHeader
+        eyebrow="Lumen workspace"
+        title="Welcome back"
+        description="Three focused AI tools to help you write, summarize, and plan — quietly, and faster."
+      />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {features.map((f) => (
-          <Link key={f.to} to={f.to} className="group">
-            <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+        {features.map((f, i) => (
+          <Link
+            key={f.to}
+            to={f.to}
+            className="group animate-rise rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            style={{ animationDelay: `${80 + i * 70}ms` }}
+          >
+            <Card className="surface-sheen h-full border-border/70 shadow-soft transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/35 group-hover:shadow-lift">
               <CardHeader>
-                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-primary/15 bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                   <f.icon className="h-5 w-5" />
                 </div>
-                <CardTitle className="flex items-center justify-between text-base">
+                <CardTitle className="flex items-center justify-between gap-2 text-base tracking-tight">
                   {f.title}
-                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1 group-hover:text-primary" />
                 </CardTitle>
-                <CardDescription>{f.description}</CardDescription>
+                <CardDescription className="leading-relaxed">{f.description}</CardDescription>
               </CardHeader>
-              <CardContent className="text-xs text-muted-foreground">
-                Powered by Gemini via Lovable AI.
+              <CardContent className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+                Gemini · Lovable AI
               </CardContent>
             </Card>
           </Link>

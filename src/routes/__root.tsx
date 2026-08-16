@@ -15,6 +15,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { AppFooter } from "@/components/ai-disclaimer";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeToggle, themeInitScript } from "@/components/theme-toggle";
 
 function NotFoundComponent() {
   return (
@@ -104,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap",
       },
     ],
   }),
@@ -116,8 +117,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <HeadContent />
       </head>
       <body>
@@ -137,11 +139,15 @@ function RootComponent() {
         <div className="flex min-h-screen w-full bg-background font-sans">
           <AppSidebar />
           <div className="flex min-h-screen flex-1 flex-col">
-            <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background/80 px-4 backdrop-blur">
-              <SidebarTrigger />
-              <span className="text-sm font-medium text-muted-foreground">Lumen</span>
+            <header className="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl">
+              <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
+              <span className="text-sm font-medium tracking-tight">Lumen</span>
+              <span className="hidden text-xs text-muted-foreground sm:inline">/ AI workspace</span>
+              <div className="ml-auto">
+                <ThemeToggle />
+              </div>
             </header>
-            <main className="flex-1">
+            <main className="ambient-glow flex-1">
               <Outlet />
             </main>
             <AppFooter />
