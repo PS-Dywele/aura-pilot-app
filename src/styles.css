@@ -233,6 +233,103 @@
   animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Hairline divider with a faint luminous center — enterprise chrome. */
+@utility hairline-bottom {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-primary) 35%, transparent),
+      color-mix(in oklab, var(--color-border) 90%, transparent) 60%,
+      transparent
+    );
+  }
+}
+
+/* Faint technical grid behind page content. */
+@utility grid-field {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(80% 60% at 50% 0%, black, transparent 75%);
+  }
+}
+
+@utility status-dot {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-primary) 60%, transparent);
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@utility animate-orbit-pulse {
+  animation: orbit-pulse 6s ease-in-out infinite;
+}
+
+/* Sweeping light across a bordered surface on hover. */
+@utility beam-hover {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: translateX(-120%);
+    background: linear-gradient(
+      100deg,
+      transparent 35%,
+      color-mix(in oklab, var(--color-primary) 14%, transparent) 50%,
+      transparent 65%
+    );
+  }
+  &:hover::after {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(120%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-primary) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes orbit-pulse {
+  0%,
+  100% {
+    opacity: 0.92;
+    filter: drop-shadow(0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--color-primary) 45%, transparent));
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;

@@ -16,6 +16,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { AppFooter } from "@/components/ai-disclaimer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle, themeInitScript } from "@/components/theme-toggle";
+import { BrandLockup } from "@/components/brand-mark";
 
 function NotFoundComponent() {
   return (
@@ -99,6 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
@@ -139,15 +141,21 @@ function RootComponent() {
         <div className="flex min-h-screen w-full bg-background font-sans">
           <AppSidebar />
           <div className="flex min-h-screen flex-1 flex-col">
-            <header className="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl">
+            <header className="hairline-bottom sticky top-0 z-20 flex h-14 items-center gap-3 bg-background/60 px-4 backdrop-blur-xl">
               <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-              <span className="text-sm font-medium tracking-tight">Catalytic</span>
-              <span className="hidden text-xs text-muted-foreground sm:inline">/ AI workspace</span>
-              <div className="ml-auto">
+              <BrandLockup compact />
+              <span className="hidden text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+                / Enterprise AI
+              </span>
+              <div className="ml-auto flex items-center gap-3">
+                <span className="hidden items-center gap-2 rounded-full border border-border/70 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground md:inline-flex">
+                  <span className="status-dot" />
+                  Systems nominal
+                </span>
                 <ThemeToggle />
               </div>
             </header>
-            <main className="ambient-glow flex-1">
+            <main className="grid-field ambient-glow flex-1">
               <Outlet />
             </main>
             <AppFooter />
