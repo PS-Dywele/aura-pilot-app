@@ -15,9 +15,9 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/plan")({
   head: () => ({
     meta: [
-      { title: "AI Task Planner — Lumen AI" },
+      { title: "AI Task Planner — Catalytic Private Test" },
       { name: "description", content: "Prioritize tasks and build a time-blocked plan with Eisenhower logic." },
-      { property: "og:title", content: "AI Task Planner — Lumen AI" },
+      { property: "og:title", content: "AI Task Planner — Catalytic Private Test" },
       { property: "og:description", content: "Prioritize tasks and build a time-blocked plan with Eisenhower logic." },
     ],
   }),

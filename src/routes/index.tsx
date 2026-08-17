@@ -2,13 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, FileText, ListChecks, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/page-header";
+import { BrandMark } from "@/components/brand-mark";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Lumen AI" },
+      { title: "Dashboard — Catalytic Private Test" },
       { name: "description", content: "Your AI productivity workspace: draft emails, summarize meetings, and plan tasks." },
-      { property: "og:title", content: "Dashboard — Lumen AI" },
+      { property: "og:title", content: "Dashboard — Catalytic Private Test" },
       { property: "og:description", content: "Your AI productivity workspace: draft emails, summarize meetings, and plan tasks." },
     ],
   }),
@@ -39,11 +40,32 @@ const features = [
 function Index() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <PageHeader
-        eyebrow="Lumen workspace"
-        title="Welcome back"
-        description="Three focused AI tools to help you write, summarize, and plan — quietly, and faster."
-      />
+      <section className="animate-rise mb-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <BrandMark className="h-16 w-16" />
+        <div>
+          <PageHeader
+            eyebrow="Catalytic systems · Private Test"
+            title="An enterprise AI workspace"
+            description="Three precision instruments to write, summarize, and plan — engineered for calm, high-signal work."
+          />
+        </div>
+      </section>
+      <div
+        className="animate-rise mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border/70 bg-border/60 sm:grid-cols-4"
+        style={{ animationDelay: "60ms" }}
+      >
+        {[
+          { k: "Model", v: "Gemini 3" },
+          { k: "Latency", v: "< 2s" },
+          { k: "Retention", v: "None" },
+          { k: "Status", v: "Operational" },
+        ].map((s) => (
+          <div key={s.k} className="bg-card px-4 py-3">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{s.k}</p>
+            <p className="mt-1 text-sm font-medium tracking-tight">{s.v}</p>
+          </div>
+        ))}
+      </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((f, i) => (
           <Link
@@ -52,7 +74,7 @@ function Index() {
             className="group animate-rise rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             style={{ animationDelay: `${80 + i * 70}ms` }}
           >
-            <Card className="surface-sheen h-full border-border/70 shadow-soft transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/35 group-hover:shadow-lift">
+            <Card className="surface-sheen beam-hover h-full border-border/70 shadow-soft transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/35 group-hover:shadow-lift">
               <CardHeader>
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-primary/15 bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                   <f.icon className="h-5 w-5" />
@@ -63,8 +85,8 @@ function Index() {
                 </CardTitle>
                 <CardDescription className="leading-relaxed">{f.description}</CardDescription>
               </CardHeader>
-              <CardContent className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                Gemini · Lovable AI
+              <CardContent className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="status-dot" /> Ready
               </CardContent>
             </Card>
           </Link>

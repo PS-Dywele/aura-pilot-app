@@ -16,6 +16,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { AppFooter } from "@/components/ai-disclaimer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle, themeInitScript } from "@/components/theme-toggle";
+import { BrandLockup } from "@/components/brand-mark";
 
 function NotFoundComponent() {
   return (
@@ -82,14 +83,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lumen — AI Productivity Dashboard" },
+      { title: "Catalytic Private Test — Enterprise AI Workspace" },
       { name: "description", content: "Draft emails, summarize meetings, and plan your day with AI." },
-      { property: "og:title", content: "Lumen — AI Productivity Dashboard" },
+      { property: "og:title", content: "Catalytic Private Test — Enterprise AI Workspace" },
       { property: "og:description", content: "Draft emails, summarize meetings, and plan your day with AI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lumen — AI Productivity Dashboard" },
+      { name: "twitter:title", content: "Catalytic Private Test — Enterprise AI Workspace" },
       { name: "twitter:description", content: "Draft emails, summarize meetings, and plan your day with AI." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/623296fe-dcf3-40a9-ad19-532f505c5fdc" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/623296fe-dcf3-40a9-ad19-532f505c5fdc" },
@@ -99,6 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
@@ -139,15 +141,21 @@ function RootComponent() {
         <div className="flex min-h-screen w-full bg-background font-sans">
           <AppSidebar />
           <div className="flex min-h-screen flex-1 flex-col">
-            <header className="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl">
+            <header className="hairline-bottom sticky top-0 z-20 flex h-14 items-center gap-3 bg-background/60 px-4 backdrop-blur-xl">
               <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-              <span className="text-sm font-medium tracking-tight">Lumen</span>
-              <span className="hidden text-xs text-muted-foreground sm:inline">/ AI workspace</span>
-              <div className="ml-auto">
+              <BrandLockup compact />
+              <span className="hidden text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+                / Enterprise AI
+              </span>
+              <div className="ml-auto flex items-center gap-3">
+                <span className="hidden items-center gap-2 rounded-full border border-border/70 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground md:inline-flex">
+                  <span className="status-dot" />
+                  Systems nominal
+                </span>
                 <ThemeToggle />
               </div>
             </header>
-            <main className="ambient-glow flex-1">
+            <main className="grid-field ambient-glow flex-1">
               <Outlet />
             </main>
             <AppFooter />

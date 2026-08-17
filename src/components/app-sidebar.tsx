@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Mail, FileText, ListChecks, Sparkles } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, ListChecks } from "lucide-react";
+import { BrandLockup } from "@/components/brand-mark";
 import {
   Sidebar,
   SidebarContent,
@@ -24,16 +25,8 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border/70">
-        <div className="flex items-center gap-2 px-2 py-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-soft">
-            <Sparkles className="h-4 w-4" />
-          </div>
-          <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="text-sm font-semibold tracking-tight">Lumen</span>
-            <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-              AI Productivity
-            </span>
-          </div>
+        <div className="px-2 py-2 [&_span.flex-col]:group-data-[collapsible=icon]:hidden">
+          <BrandLockup />
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -49,10 +42,10 @@ export function AppSidebar() {
                     asChild
                     isActive={pathname === item.url}
                     tooltip={item.title}
-                    className="transition-colors data-[active=true]:font-medium"
+                    className="group/nav relative overflow-hidden transition-all duration-300 data-[active=true]:font-medium data-[active=true]:before:absolute data-[active=true]:before:left-0 data-[active=true]:before:top-1/2 data-[active=true]:before:h-4 data-[active=true]:before:w-[2px] data-[active=true]:before:-translate-y-1/2 data-[active=true]:before:rounded-full data-[active=true]:before:bg-primary"
                   >
                     <Link to={item.url}>
-                      <item.icon className="h-4 w-4" />
+                      <item.icon className="h-4 w-4 transition-transform duration-300 group-hover/nav:scale-110" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
