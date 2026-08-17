@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 
 type Theme = "light" | "dark";
 
-export const themeInitScript = `(function(){try{if(localStorage.getItem('lumen-theme')==='light'){document.documentElement.classList.remove('dark');}}catch(e){}})();`;
+export const themeInitScript = `(function(){try{if(localStorage.getItem('catalytic-theme')==='light'){document.documentElement.classList.remove('dark');}}catch(e){}})();`;
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const stored = (localStorage.getItem("lumen-theme") as Theme | null) ?? "dark";
+    const stored = (localStorage.getItem("catalytic-theme") as Theme | null) ?? "dark";
     setTheme(stored);
     document.documentElement.classList.toggle("dark", stored !== "light");
   }, []);
@@ -18,7 +18,7 @@ export function ThemeToggle() {
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    localStorage.setItem("lumen-theme", next);
+    localStorage.setItem("catalytic-theme", next);
     document.documentElement.classList.toggle("dark", next === "dark");
   };
 

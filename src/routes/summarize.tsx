@@ -14,9 +14,9 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/summarize")({
   head: () => ({
     meta: [
-      { title: "Meeting Summarizer — Lumen AI" },
+      { title: "Meeting Summarizer — Catalytic Private Test" },
       { name: "description", content: "Turn raw meeting notes into structured summaries with action items." },
-      { property: "og:title", content: "Meeting Summarizer — Lumen AI" },
+      { property: "og:title", content: "Meeting Summarizer — Catalytic Private Test" },
       { property: "og:description", content: "Turn raw meeting notes into structured summaries with action items." },
     ],
   }),

@@ -16,9 +16,9 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/email")({
   head: () => ({
     meta: [
-      { title: "Smart Email Generator — Lumen AI" },
+      { title: "Smart Email Generator — Catalytic Private Test" },
       { name: "description", content: "Generate professional email drafts tuned to audience and tone." },
-      { property: "og:title", content: "Smart Email Generator — Lumen AI" },
+      { property: "og:title", content: "Smart Email Generator — Catalytic Private Test" },
       { property: "og:description", content: "Generate professional email drafts tuned to audience and tone." },
     ],
   }),

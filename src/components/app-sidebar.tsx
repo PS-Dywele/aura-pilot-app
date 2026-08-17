@@ -29,7 +29,7 @@ export function AppSidebar() {
             <Sparkles className="h-4 w-4" />
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="text-sm font-semibold tracking-tight">Lumen</span>
+            <span className="text-sm font-semibold tracking-tight">Catalytic</span>
             <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
               AI Productivity
             </span>

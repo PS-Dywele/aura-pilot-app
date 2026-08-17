@@ -6,9 +6,9 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Lumen AI" },
+      { title: "Dashboard — Catalytic Private Test" },
       { name: "description", content: "Your AI productivity workspace: draft emails, summarize meetings, and plan tasks." },
-      { property: "og:title", content: "Dashboard — Lumen AI" },
+      { property: "og:title", content: "Dashboard — Catalytic Private Test" },
       { property: "og:description", content: "Your AI productivity workspace: draft emails, summarize meetings, and plan tasks." },
     ],
   }),
@@ -40,7 +40,7 @@ function Index() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Lumen workspace"
+        eyebrow="Catalytic systems"
         title="Welcome back"
         description="Three focused AI tools to help you write, summarize, and plan — quietly, and faster."
       />
