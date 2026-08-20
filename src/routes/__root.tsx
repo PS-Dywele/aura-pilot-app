@@ -140,7 +140,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SidebarProvider>
         <FloatingField />
-        <div className="flex min-h-screen w-full bg-background font-sans">
+        <div className="flex min-h-screen w-full font-sans">
           <AppSidebar />
           <div className="flex min-h-screen flex-1 flex-col">
             <header className="hairline-bottom sticky top-0 z-20 flex h-14 items-center gap-3 bg-background/60 px-4 backdrop-blur-xl">
