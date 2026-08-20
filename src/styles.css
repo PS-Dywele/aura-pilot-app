@@ -353,7 +353,7 @@
 .floating-orb {
   position: absolute;
   border-radius: 999px;
-  filter: blur(48px);
+  filter: blur(56px);
   background: radial-gradient(
     circle at 30% 30%,
     color-mix(in oklab, var(--color-primary) 70%, transparent),
@@ -369,8 +369,9 @@
 .floating-particle {
   position: absolute;
   border-radius: 999px;
-  background: color-mix(in oklab, var(--color-primary) 55%, transparent);
-  opacity: 0.35;
+  background: color-mix(in oklab, var(--color-primary) 85%, transparent);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--color-primary) 45%, transparent);
+  opacity: 0.5;
   will-change: transform, opacity;
   animation-name: hover-float;
   animation-timing-function: ease-in-out;
@@ -382,7 +383,7 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
   to {
-    transform: translate3d(28px, -34px, 0) scale(1.08);
+    transform: translate3d(46px, -52px, 0) scale(1.12);
   }
 }
 
@@ -390,11 +391,34 @@
   0%,
   100% {
     transform: translate3d(0, 0, 0);
-    opacity: 0.18;
+    opacity: 0.25;
   }
   50% {
-    transform: translate3d(6px, -22px, 0);
-    opacity: 0.45;
+    transform: translate3d(10px, -34px, 0);
+    opacity: 0.7;
+  }
+}
+
+/* Very slow aurora wash across the top — adds depth without drawing attention. */
+.aurora-sweep {
+  position: absolute;
+  inset: -20% -30% auto -30%;
+  height: 70vh;
+  filter: blur(70px);
+  opacity: 0.5;
+  background:
+    radial-gradient(45% 60% at 25% 40%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 70%),
+    radial-gradient(40% 55% at 70% 30%, color-mix(in oklab, var(--color-chart-2) 18%, transparent), transparent 70%);
+  will-change: transform;
+  animation: aurora 34s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  from {
+    transform: translate3d(-3%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4%, 3%, 0) scale(1.1);
   }
 }
 
