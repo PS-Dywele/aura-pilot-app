@@ -91,3 +91,27 @@ Live preview: [https://aura-pilot-app.lovable.app](https://aura-pilot-app.lovabl
 ## License
 
 MIT
+
+## Deploying behind a reverse proxy / ZTA tunnel
+
+Asset URLs are emitted root-absolute (`/assets/...`) by default, which is correct
+when the app is served at the domain root.
+
+If your proxy (e.g. Cisco Secure Access ZTA) exposes the app under a **sub-path**,
+build with that prefix so CSS/JS resolve correctly instead of 404-ing (which shows
+as a page that loads then hangs on a spinner):
+
+```bash
+docker build --build-arg APP_BASE_PATH=/catalytic/ -t catalytic .
+docker run -d --name catalytic -p 3000:3000 --restart unless-stopped catalytic
+```
+
+Served at root, no build arg is needed:
+
+```bash
+docker build -t catalytic .
+docker run -d --name catalytic -p 3000:3000 --restart unless-stopped catalytic
+```
+
+Also make sure the tunnel forwards `/assets/*` and `/_serverFn/*` to the app and
+does not rewrite or strip those paths.
