@@ -21,6 +21,10 @@ RUN bun install --frozen-lockfile
 COPY . .
 ENV NODE_ENV=production
 ENV NITRO_PRESET=node-server
+# Set when the app is served under a sub-path by a reverse proxy / ZTA tunnel,
+# e.g. --build-arg APP_BASE_PATH=/catalytic/. Leave empty when served at root.
+ARG APP_BASE_PATH=
+ENV APP_BASE_PATH=${APP_BASE_PATH}
 RUN bun run build
 
 ##############################
