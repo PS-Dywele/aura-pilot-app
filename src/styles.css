@@ -341,6 +341,63 @@
   }
 }
 
+/* Ambient floating background layer — decorative, behind all content. */
+.floating-field {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(48px);
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in oklab, var(--color-primary) 70%, transparent),
+    transparent 70%
+  );
+  will-change: transform;
+  animation-name: drift;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.floating-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-primary) 55%, transparent);
+  opacity: 0.35;
+  will-change: transform, opacity;
+  animation-name: hover-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(28px, -34px, 0) scale(1.08);
+  }
+}
+
+@keyframes hover-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate3d(6px, -22px, 0);
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

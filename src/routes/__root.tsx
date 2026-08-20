@@ -17,6 +17,7 @@ import { AppFooter } from "@/components/ai-disclaimer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle, themeInitScript } from "@/components/theme-toggle";
 import { BrandLockup } from "@/components/brand-mark";
+import { FloatingField } from "@/components/floating-field";
 
 function NotFoundComponent() {
   return (
@@ -138,6 +139,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SidebarProvider>
+        <FloatingField />
         <div className="flex min-h-screen w-full bg-background font-sans">
           <AppSidebar />
           <div className="flex min-h-screen flex-1 flex-col">
