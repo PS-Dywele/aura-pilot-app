@@ -6,12 +6,24 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Base path for all emitted asset URLs.
+//
+// Default "/" (root-absolute) is correct for Lovable hosting and for a VM that
+// serves the app at the domain root. When a reverse proxy / Cisco ZTA tunnel
+// exposes the app under a sub-path (e.g. https://gw.example.com/catalytic/),
+// root-absolute URLs resolve to the gateway root and 404 — the page loads its
+// HTML but never hydrates (endless spinner). Build with:
+//   APP_BASE_PATH=/catalytic/ bun run build
+// so every CSS/JS URL is emitted with that prefix.
+const rawBase = process.env.APP_BASE_PATH?.trim();
+const basePath = rawBase && rawBase !== "/" ? `/${rawBase.replace(/^\/+|\/+$/g, "")}/` : "/";
+
 export default defineConfig({
   // Force consistent, root-absolute asset URLs so hashed CSS/JS emitted into
   // /assets/ are always referenced as /assets/... — this keeps the app working
   // behind reverse proxies / ZTA tunnels where relative paths resolve wrongly.
   vite: {
-    base: "/",
+    base: basePath,
     build: {
       assetsDir: "assets",
     },
