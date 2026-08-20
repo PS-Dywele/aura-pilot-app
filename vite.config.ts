@@ -7,6 +7,15 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Force consistent, root-absolute asset URLs so hashed CSS/JS emitted into
+  // /assets/ are always referenced as /assets/... — this keeps the app working
+  // behind reverse proxies / ZTA tunnels where relative paths resolve wrongly.
+  vite: {
+    base: "/",
+    build: {
+      assetsDir: "assets",
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
